@@ -1,16 +1,31 @@
 import Clock from '../components/Clock';
-import useTime from '../hooks/useTimer';
+import useTime, { Timer } from '../hooks/useTimer';
 
 function Home() {
-  const timer = useTime();
+  const [timer, setTimer, start, setStart] = useTime();
+
   return (
     <div>
       <header>
         <h1>Pomodoro</h1>
         <section>
           <button>pomodoro</button>
-          <button>intervalo curto</button>
-          <button>intervalo longo</button>
+          <button
+            onClick={ () => {
+              setStart(false);
+              setTimer(new Timer(0, 15));
+            } }
+          >
+            intervalo curto
+          </button>
+          <button
+            onClick={ () => {
+              setStart(false);
+              setTimer(new Timer(0, 45));
+            } }
+          >
+            intervalo longo
+          </button>
         </section>
       </header>
       <main>
@@ -19,8 +34,8 @@ function Home() {
           <input
             type="range"
           />
-          <button>
-            Pausar
+          <button onClick={ () => { setStart(!start); } }>
+            {`${start ? 'pause' : 'start'}`}
           </button>
         </article>
       </main>
