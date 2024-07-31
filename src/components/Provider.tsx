@@ -14,6 +14,7 @@ function Provider({ children }: { children: ReactNode }) {
     intervalLong: new Timer(0, 20),
     intervalShort: new Timer(0, 5) });
   const [popup, setPopup] = useState(false);
+  const [option, setOption] = useState<0 | 1 | 2>(0);
 
   return (
     <Context.Provider
@@ -36,6 +37,10 @@ function Provider({ children }: { children: ReactNode }) {
           start,
           setStart,
           timeRef,
+        },
+        option: {
+          option,
+          setOption,
         },
       } }
     >

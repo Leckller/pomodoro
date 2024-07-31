@@ -6,6 +6,9 @@ import ButtonTimer from './ButtonTimer';
 function Popup() {
   const {
     popup: { setPopup }, mainColor: { mainColor },
+    optionTimer: { optionTime },
+    timer: { setTimer, timeRef },
+    option: { setOption },
   } = useContext(Context);
 
   return (
@@ -34,7 +37,11 @@ function Popup() {
 
         <section className="border-b-2 pb-5 flex flex-col gap-5">
           <h2>Tempo ( Minutos )</h2>
-          <article className="flex flex-row w-full justify-between">
+          <article
+            className="flex flex-row w-full justify-around flex-wrap
+
+          "
+          >
 
             <InputTimer optionName="pomodoro" title="pomodoro" />
             <InputTimer optionName="intervalShort" title="intervalo curto" />
@@ -52,7 +59,7 @@ function Popup() {
               </article>
             </section> */}
 
-        <section className="flex justify-between flex-row">
+        <section className="flex justify-between flex-row flex-wrap">
           <h2>Cor</h2>
           <article className="flex flex-row gap-5">
 
@@ -65,11 +72,17 @@ function Popup() {
 
       </main>
       <div
-        className="absolute bottom-0 w-full translate-y-3 text-center"
+        className="absolute bottom-0 w-full translate-y-5 text-center"
       >
         <button
-          onClick={ () => setPopup(false) }
-          className={ `${mainColor} p-4 rounded-[30px]` }
+          onClick={ () => {
+            const newTimer = optionTime.pomodoro;
+            setTimer(newTimer);
+            timeRef.current = newTimer.totalTime();
+            setOption(0);
+            setPopup(false);
+          } }
+          className={ `${mainColor} p-3 rounded-[30px]` }
         >
           Aplicar Mudanças
         </button>

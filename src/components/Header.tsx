@@ -1,12 +1,12 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import Context from './Context';
 
 function Header() {
-  const [option, setOption] = useState<0 | 1 | 2 | 3>(0);
   const {
     optionTimer: { optionTime },
     timer: { setTimer, timeRef, setStart },
     mainColor: { mainColor },
+    option: { option, setOption },
   } = useContext(Context);
   const selected = `text-[#1e2140] ${mainColor}`;
 
@@ -21,7 +21,7 @@ function Header() {
          bg-[#151932] h-12 p-1 rounded-3xl text-[#61657e]"
       >
         <button
-          className={ `w-[30%] p-2 rounded-3xl flex-grow text-sm
+          className={ `w-[30%] rounded-3xl flex-grow text-sm
               ${option === 0 ? selected : ''} transition-all` }
           onClick={ () => {
             const newTimer = optionTime.pomodoro;
@@ -33,7 +33,7 @@ function Header() {
           pomodoro
         </button>
         <button
-          className={ `w-[30%] p-2 rounded-3xl flex-grow text-sm
+          className={ `w-[30%] rounded-3xl flex-grow text-sm
               ${option === 1 ? selected : ''}  transition-all` }
           onClick={ () => {
             setStart(false);
@@ -46,7 +46,7 @@ function Header() {
           intervalo curto
         </button>
         <button
-          className={ `w-[30%] p-2 rounded-3xl flex-grow text-sm
+          className={ `w-[30%] rounded-3xl flex-grow text-sm
               ${option === 2 ? selected : ''}  transition-all` }
           onClick={ () => {
             setStart(false);

@@ -26,6 +26,10 @@ export type ContextType = {
     popup: boolean,
     setPopup: (p: boolean) => void,
   }
+  option : {
+    option: 0 | 1 | 2,
+    setOption: (p: 0 | 1 | 2) => void,
+  }
 };
 
 const Context = createContext({} as ContextType);
