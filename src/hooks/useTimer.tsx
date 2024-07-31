@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { MutableRefObject, useEffect, useRef, useState } from 'react';
 
 export class Timer {
   constructor(
@@ -7,16 +7,25 @@ export class Timer {
     public hours: number = 0,
   ) {
   }
+
+  totalTime(): number {
+    return (this.hours * 360) + (this.minutes * 60) + this.seconds;
+  }
 }
 
 export default function useTime(): [Timer, (f: Timer) => void,
-  boolean, (f: boolean) => void] {
-  const [time, setTime] = useState(new Timer());
+  boolean, (f: boolean) => void, MutableRefObject<number>] {
+  const [time, setTime] = useState(new Timer(0, 45));
   const [start, setStart] = useState(false);
+  const timerRef = useRef(time.totalTime());
 
   useEffect(() => {
     if (start) {
       const id = setInterval(() => {
+        if (time.hours === 0 && time.minutes === 0 && time.seconds === 0) {
+          clearInterval(id);
+          return;
+        }
         time.seconds -= 1;
         if (time.seconds < 0) {
           time.seconds = 59;
@@ -35,5 +44,5 @@ export default function useTime(): [Timer, (f: Timer) => void,
     }
   }, [start]);
 
-  return [time, setTime, start, setStart];
+  return [time, setTime, start, setStart, timerRef];
 }
