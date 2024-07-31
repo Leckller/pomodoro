@@ -5,7 +5,8 @@ export class Timer {
     public seconds: number = 0,
     public minutes: number = 0,
     public hours: number = 0,
-  ) {}
+  ) {
+  }
 
   totalTime(): number {
     return (this.hours * 360) + (this.minutes * 60) + this.seconds;
@@ -14,14 +15,13 @@ export class Timer {
 
 export default function useTime(): [Timer, (f: Timer) => void,
   boolean, (f: boolean) => void, MutableRefObject<number>] {
-  const [time, setTime] = useState(new Timer());
+  const [time, setTime] = useState(new Timer(0, 45));
   const [start, setStart] = useState(false);
   const timerRef = useRef(time.totalTime());
 
   useEffect(() => {
     if (start) {
       const id = setInterval(() => {
-        console.log(timerRef.current);
         if (time.hours === 0 && time.minutes === 0 && time.seconds === 0) {
           clearInterval(id);
           return;
