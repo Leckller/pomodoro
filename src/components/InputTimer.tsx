@@ -14,11 +14,11 @@ function InputTimer({ optionName, title }:
   } = useContext(Context);
 
   return (
-    <label className="w-[30%]">
+    <label className="flex flex-col">
       <p className="text-sm text-[#b1b1b7]">{title}</p>
       <input
-        className="max-w-[25vw] w-[150px] p-2 rounded-md
-                   bg-[#eef1fa]"
+        className="w-[150px] p-2 rounded-md
+                   bg-[#eef1fa] flex-grow"
         type="number"
         min={ 0 }
         value={ (optionTime[optionName].totalTime() / 60).toFixed() }

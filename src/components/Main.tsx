@@ -9,6 +9,10 @@ function Main() {
     mainColor: { mainColor },
   } = useContext(Context);
 
+  // const hours = timer.hours < 10 ? `0${timer.hours}` : timer.hours;
+  const minutes = timer.minutes < 10 ? `0${timer.minutes}` : timer.minutes;
+  const seconds = timer.seconds < 10 ? `0${timer.seconds}` : timer.seconds;
+
   return (
     <main className="w-full flex justify-center h-[500px]">
       <article
@@ -26,7 +30,7 @@ function Main() {
             trailColor: '#151932',
             textSize: '20px',
           }) }
-          text={ `${timer.hours}:${timer.minutes}:${timer.seconds}` }
+          text={ `${minutes}:${seconds}` }
         />
         <button
           className="translate-y-12 absolute"
