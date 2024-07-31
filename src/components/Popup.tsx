@@ -5,7 +5,7 @@ import ButtonTimer from './ButtonTimer';
 
 function Popup() {
   const {
-    popup: { setPopup }, mainColor: { mainColor, setMainColor },
+    popup: { setPopup }, mainColor: { mainColor },
   } = useContext(Context);
 
   return (

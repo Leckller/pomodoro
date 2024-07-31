@@ -4,7 +4,7 @@ import Context from './Context';
 function Header() {
   const [option, setOption] = useState<0 | 1 | 2 | 3>(0);
   const {
-    optionTimer: { optionTime, setOptionTime },
+    optionTimer: { optionTime },
     timer: { setTimer, timeRef, setStart },
     mainColor: { mainColor },
   } = useContext(Context);
